@@ -1,0 +1,24 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="dml.003.1" author="Borys Lucky" dbms="oracle" logicalFilePath="dml.003.add_db_specific_users.xml.1">
+        <insert tableName="POC_FLW_USERS">
+            <column name="USER_ID" valueNumeric="1003"/>
+            <column name="USER_NAME" value="Oracle"/>
+            <column name="USER_AGE" value="19"/>
+            <column name="BIRTHDAY" valueDate="2000-04-23"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="dml.003.2" author="Borys Lucky" dbms="h2" logicalFilePath="dml.003.add_db_specific_users.xml.2">
+        <insert tableName="POC_FLW_USERS">
+            <column name="USER_ID" valueNumeric="1003"/>
+            <column name="USER_NAME" value="H2"/>
+            <column name="USER_AGE" value="12"/>
+            <column name="BIRTHDAY" valueDate="2007-11-28"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

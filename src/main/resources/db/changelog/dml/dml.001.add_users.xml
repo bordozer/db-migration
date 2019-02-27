@@ -1,0 +1,19 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="dml.001" author="Borys Lucky" logicalFilePath="dml.001.add_users.xml">
+        <insert tableName="POC_FLW_USERS">
+            <column name="USER_ID" valueNumeric="1001"/>
+            <column name="USER_NAME" value="Max Damage"/>
+            <column name="USER_AGE" value="24"/>
+        </insert>
+        <insert tableName="POC_FLW_USERS">
+            <column name="USER_ID" valueNumeric="1002"/>
+            <column name="USER_NAME" value="Die Anna"/>
+            <column name="USER_AGE" value="16"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

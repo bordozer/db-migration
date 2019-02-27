@@ -1,0 +1,124 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.1.RELEASE'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.1.RELEASE")
+        classpath "gradle.plugin.com.github.spotbugs:spotbugs-gradle-plugin:1.6.9"
+        classpath 'com.fizzpod:gradle-pater-build-plugin:2.0.0'
+        classpath 'com.bordozer.commons:parent:3.02'
+        classpath 'org.reflections:reflections:0.9.11'
+        classpath 'org.apache.commons:commons-io:1.3.2'
+
+        classpath 'org.liquibase:liquibase-gradle-plugin:2.0.1'
+        classpath 'org.liquibase:liquibase-core:3.6.2'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'war'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.fizzpod.pater-build'
+apply plugin: 'org.liquibase.gradle'
+
+group = 'com.bordozer.poc'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+ext {
+    springBootStarterVersion = '2.1.1.RELEASE'
+    springVersion = '5.1.4.RELEASE'
+    lombokVersion = '1.18.4'
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootStarterVersion}") {
+        exclude module: 'spring-boot-starter-tomcat'
+    }
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.1.2.RELEASE'
+    compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '1.3.2'
+    compile group: 'org.apache.tomcat', name: 'tomcat-catalina', version: '9.0.13'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+
+    compile group: 'com.github.spotbugs', name: 'spotbugs', version: '3.1.8'
+    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'ch.qos.logback:logback-core:1.2.3'
+
+    compile group: 'org.liquibase', name: 'liquibase-core', version: '3.6.2'
+    runtime group: 'org.liquibase', name: 'liquibase-groovy-dsl', version: '2.0.2'
+
+    liquibaseRuntime('org.liquibase:liquibase-core:3.6.2')
+    liquibaseRuntime('org.liquibase:liquibase-groovy-dsl:2.0.2')
+    liquibaseRuntime('com.oracle:ojdbc7:12.1.0.2')
+
+    compile group: 'com.h2database', name: 'h2', version: '1.4.197'
+    compile group: 'com.oracle', name: 'ojdbc7', version: '12.1.0.2'
+
+    compile group: 'com.bordozer', name: 'commons', version: '3.08'
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootStarterVersion
+    testCompile group: 'org.dbunit', name: 'dbunit', version: '2.6.0'
+    testCompile group: 'com.github.springtestdbunit', name: 'spring-test-dbunit', version: '1.3.0'
+    testCompile group: 'com.h2database', name: 'h2', version: '1.4.197'
+}
+
+/* JUnit5 */
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'PASSED', 'FAILED', 'SKIPPED'
+    }
+}
+test.testLogging.showStandardStreams = true
+
+/* SCA */
+ext {
+    scaSource = 'src/main/java/com/bordozer/poc/dbmigration'
+}
+checkstyleMain {
+    source = scaSource
+}
+pmdMain {
+    source = scaSource
+}
+spotbugsMain {
+    // TODO: is ignored
+    source = scaSource
+}
+tasks.withType(Checkstyle) { task -> enabled = true }
+tasks.withType(Pmd) { task -> enabled = true }
+spotbugsMain.enabled = true
+
+
+def changeLog = "$projectDir/src/main/resources/db/changelog/db.changelog-master.xml"
+task('dbMigration') << {
+    println "Executing database migration: $changeLog"
+    liquibase {
+        activities {
+            main {
+                changeLogFile changeLog
+                url 'jdbc:h2:file:./h2db/dev_db;MODE=Oracle;AUTO_SERVER=TRUE'
+                username 'sa'
+                password 'sa'
+            }
+        }
+    }
+}

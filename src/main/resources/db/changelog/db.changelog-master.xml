@@ -1,0 +1,14 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <include file="ddl/ddl.001.init_db.xml" relativeToChangelogFile="true"/>
+    <include file="dml/dml.001.add_users.xml" relativeToChangelogFile="true"/>
+    <include file="ddl/ddl.002.add_user_birthday.xml" relativeToChangelogFile="true"/>
+    <include file="dml/dml.002.update_user_birthdays.xml" relativeToChangelogFile="true"/>
+    <include file="ddl/ddl.003.user_birthday_is_not_null.xml" relativeToChangelogFile="true"/>
+    <include file="dml/dml.003.add_db_specific_users.xml" relativeToChangelogFile="true"/>
+    <include file="dml/dml.004.exec_db_specific_sql.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

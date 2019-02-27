@@ -1,0 +1,14 @@
+[
+  {
+    "userId": 1001,
+    "userName": "Max Damage",
+    "userAge": 24,
+    "birthday": null
+  },
+  {
+    "userId": 1002,
+    "userName": "Die Anna",
+    "userAge": 16,
+    "birthday": null
+  }
+]

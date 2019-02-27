@@ -1,0 +1,27 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="dml.004.1" author="Borys Lucky" logicalFilePath="dml.004.exec_db_specific_sql.xml.1">
+        <sql dbms="h2, oracle" endDelimiter="\nGO" splitStatements="true" stripComments="true">
+            insert into POC_FLW_USERS (USER_ID, USER_NAME, USER_AGE, BIRTHDAY)
+                values ('1004', 'H2 and Oracle SQL', '5', TO_DATE('2013-07-17', 'yyyy/mm/dd'))
+        </sql>
+    </changeSet>
+
+    <changeSet id="dml.004.2" author="Borys Lucky" logicalFilePath="dml.004.exec_db_specific_sql.xml.2">
+        <sql dbms="oracle" endDelimiter="\nGO" splitStatements="true" stripComments="true">
+            insert into POC_FLW_USERS (USER_ID, USER_NAME, USER_AGE, BIRTHDAY)
+            values ('1005', 'Oracle SQL', '8', TO_DATE('2011-09-19', 'yyyy/mm/dd'))
+        </sql>
+    </changeSet>
+
+    <changeSet id="dml.004.3" author="Borys Lucky" logicalFilePath="dml.004.exec_db_specific_sql.xml.3">
+        <sql dbms="h2" endDelimiter="\nGO" splitStatements="true" stripComments="true">
+            insert into POC_FLW_USERS (USER_ID, USER_NAME, USER_AGE, BIRTHDAY)
+            values ('1005', 'H2 SQL', '10', '2009-08-18')
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

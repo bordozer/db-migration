@@ -1,0 +1,16 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="dml.002" author="Borys Lucky" logicalFilePath="dml.002.update_user_birthdays.xml">
+        <update tableName="POC_FLW_USERS">
+            <column name="BIRTHDAY" valueDate="1996-02-28"/>
+            <where>USER_ID='1001'</where>
+        </update>
+        <update tableName="POC_FLW_USERS">
+            <column name="BIRTHDAY" valueDate="2002-08-21"/>
+            <where>USER_ID='1002'</where>
+        </update>
+    </changeSet>
+</databaseChangeLog>

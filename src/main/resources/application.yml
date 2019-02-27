@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: db-migration
+  profiles:
+    active: dev
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+server:
+  port: 9009
+
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
+
+application:
+  properties:
+    dateFormat: yyyy-MM-dd
+    dateTimeFormat: yyyy-MM-dd HH:mm:ss
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:h2:file:./h2db/dev_db7;MODE=Oracle;AUTO_SERVER=TRUE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+
+application:
+  properties:
+    schema: PUBLIC
+
+---
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:oracle:thin:@p1ehowfsad-scan.prudential.com:1521/FSACOMND.PRUDENTIAL.COM
+    username: ALLOCTN
+    password: eafd2014
+    driver-class-name: oracle.jdbc.OracleDriver
+
+application:
+  properties:
+    schema: ALLOCTN

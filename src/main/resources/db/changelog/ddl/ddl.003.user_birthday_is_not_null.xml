@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="ddl.003" author="Borys Lucky"  logicalFilePath="ddl.003.user_birthday_is_not_null.xml">
+        <addNotNullConstraint tableName="POC_FLW_USERS" columnName="BIRTHDAY" columnDataType="DATE"/>
+    </changeSet>
+
+</databaseChangeLog>

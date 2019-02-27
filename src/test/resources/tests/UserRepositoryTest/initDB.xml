@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dataset>
+
+    <PUBLIC.POC_FLW_USERS
+            USER_ID="2047"
+            USER_NAME="Jupiter"
+            USER_AGE="27"
+            BIRTHDAY="1991-10-24"
+    />
+
+    <PUBLIC.POC_FLW_USERS
+            USER_ID="3012"
+            USER_NAME="Pluto"
+            USER_AGE="31"
+            BIRTHDAY="1998-01-02"
+    />
+
+    <PUBLIC.POC_FLW_USERS
+            USER_ID="4001"
+            USER_NAME="Venus"
+            USER_AGE="17"
+            BIRTHDAY="2002-07-20"
+    />
+
+</dataset>

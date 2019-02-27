@@ -1,0 +1,32 @@
+[
+  {
+    "userId": 1001,
+    "userName": "Max Damage",
+    "userAge": 24,
+    "birthday": "1996-02-28"
+  },
+  {
+    "userId": 1002,
+    "userName": "Die Anna",
+    "userAge": 16,
+    "birthday": "2002-08-21"
+  },
+  {
+    "userId": 1003,
+    "userName": "Oracle",
+    "userAge": 19,
+    "birthday": "2000-04-23"
+  },
+  {
+    "userId": 1004,
+    "userName": "H2 and Oracle SQL",
+    "userAge": 5,
+    "birthday": "2013-07-17"
+  },
+  {
+    "userId": 1005,
+    "userName": "Oracle SQL",
+    "userAge": 8,
+    "birthday": "2011-09-19"
+  }
+]
